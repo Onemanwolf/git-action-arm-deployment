@@ -29,11 +29,25 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy resource group rg-githubactions with AZ CLI
-        uses: Azure/cli@1.0.4
+      - name: Deploy Azure Resource Manager (ARM) Template
+        uses: Azure/arm-deploy@v1
         with:
-          inlinescript:
-            az deployment sub create --location "East US" --template-file ./arm-templates/resourcegroup.json
+          scope: subscription
+          subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
+          region: East US
+          template: ./arm-templates/resourcegroup.json
+          deploymentName: rg-githubactions
+
+
+
+
+
+
+      # - name: Deploy resource group rg-githubactions with AZ CLI
+      #   uses: Azure/cli@1.0.4
+      #   with:
+      #     inlinescript:
+      #       az deployment sub create --location "East US" --template-file ./arm-templates/resourcegroup.json
 
 
 
