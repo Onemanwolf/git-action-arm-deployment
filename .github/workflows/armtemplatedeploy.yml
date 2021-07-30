@@ -47,7 +47,23 @@ jobs:
                     storageAccountName=timostg002
                     location="westus"
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
-      - run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
+      #- run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
+
+      - name: Deploy Virtual Machine (ARM) Template
+        uses: Azure/arm-deploy@v1
+
+        with:
+          scope: resourcegroup
+          resourceGroupName: rg-githubactions
+          subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
+          region: East US
+          template: ./arm-templates/virtualmachine.json
+          parameters: adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD}}
+          deploymentMode: incremental
+
+
+
+
 
       # - name: Deploy resource group rg-githubactions with AZ CLI
       #   uses: Azure/cli@1.0.4
