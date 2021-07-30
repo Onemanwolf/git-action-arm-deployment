@@ -47,7 +47,7 @@ jobs:
                     storageAccountName=timostg002
                     location="westus"
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
-      - run: echo${{ steps.storageAccountDeploy.outputs.BlobUri}}
+      - run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
 
       # - name: Deploy resource group rg-githubactions with AZ CLI
       #   uses: Azure/cli@1.0.4
