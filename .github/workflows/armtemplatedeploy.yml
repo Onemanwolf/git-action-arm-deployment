@@ -41,7 +41,10 @@ jobs:
           subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
           region: East US
           template: ./arm-templates/storageaccount.json
-          parameters: ./arm-templates/storageaccount.parameters.json
+          parameters:
+                    ./arm-templates/storageaccount.parameters.json
+                    storageAccountName=timostg002
+                    location="westus"
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
 
       # - name: Deploy resource group rg-githubactions with AZ CLI
