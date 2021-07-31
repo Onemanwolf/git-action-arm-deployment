@@ -62,7 +62,9 @@ jobs:
           subscriptionId: ${{ env.subscriptionId}}
           region: "${{ env.location }}"
           template: ./arm-templates/virtualmachine.json
-          parameters: adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD}}
+          parameters:
+                adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD}}
+                location="${{ env.location }}"
           deploymentMode: incremental
       # - name: Deploy resource group rg-githubactions with AZ CLI
       #   uses: Azure/cli@1.0.4
