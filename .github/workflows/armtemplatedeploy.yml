@@ -49,7 +49,7 @@ jobs:
           template: ./arm-templates/storageaccount.json
           parameters: ./arm-templates/storageaccount.parameters.json
             storageAccountName=timostg002
-            location= ${{ env.location }}
+            location="${{ env.location }}"
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
       #- run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
 
