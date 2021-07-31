@@ -10,7 +10,7 @@ on:
 
 env:
   resource_group_name : rg-githubactions
-  location: "eastus"
+  location: "East US"
   subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
