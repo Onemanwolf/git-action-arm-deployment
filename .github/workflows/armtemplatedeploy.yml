@@ -10,7 +10,7 @@ on:
 
 env:
   resource_group_name : rg-githubactions
-  location: "East US"
+  location: East US
   subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -35,7 +35,7 @@ jobs:
         with:
           scope: subscription
           subscriptionId: ${{ env.subscriptionId}}
-          region: ${{env.location}}
+          region: "${{ env.location}}"
           template: ./arm-templates/resourcegroup.json
           deploymentName: ${{ env.resource_group_name }}
 
@@ -46,12 +46,12 @@ jobs:
           scope: resourcegroup
           resourceGroupName: ${{ env.resource_group_name}}
           subscriptionId:  ${{ env.subscriptionId}}
-          region: ${{ env.location}}
+          region: "${{ env.location}}"
           template: ./arm-templates/storageaccount.json
           parameters:
                     ./arm-templates/storageaccount.parameters.json
                     storageAccountName=timostg002
-                    location= ${{ env.location }}
+                    location= "${{ env.location}}"
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
       #- run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
 
@@ -62,7 +62,7 @@ jobs:
           scope: resourcegroup
           resourceGroupName: ${{ env.resource_group_name}}
           subscriptionId:  ${{ env.subscriptionId}}
-          region: ${{ env.location }}
+          region: "${{ env.location}}"
           template: ./arm-templates/virtualmachine.json
           parameters: adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD}}
           deploymentMode: incremental
