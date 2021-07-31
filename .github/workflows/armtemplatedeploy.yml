@@ -7,9 +7,8 @@ on:
 
   workflow_dispatch:
 
-
 env:
-  resource_group_name : rg-githubactions
+  resource_group_name: rg-githubactions
   location: East US
   subscriptionId: 6738d774-0014-4ded-842b-327158c8b568
 
@@ -45,13 +44,12 @@ jobs:
         with:
           scope: resourcegroup
           resourceGroupName: ${{ env.resource_group_name}}
-          subscriptionId:  ${{ env.subscriptionId}}
+          subscriptionId: ${{ env.subscriptionId}}
           region: "${{ env.location}}"
           template: ./arm-templates/storageaccount.json
-          parameters:
-                    ./arm-templates/storageaccount.parameters.json
-                    storageAccountName=timostg002
-                    location= "${{ env.location}}"
+          parameters: ./arm-templates/storageaccount.parameters.json
+            storageAccountName=timostg002
+            location= ${{ env.location }}
           deploymentMode: incremental #complete mode will delete any resource not in the resource group
       #- run: echo ${{ steps.storageAccountDeploy.outputs.BlobUri}}
 
@@ -61,16 +59,11 @@ jobs:
         with:
           scope: resourcegroup
           resourceGroupName: ${{ env.resource_group_name}}
-          subscriptionId:  ${{ env.subscriptionId}}
-          region: "${{ env.location}}"
+          subscriptionId: ${{ env.subscriptionId}}
+          region: "${{ env.location }}"
           template: ./arm-templates/virtualmachine.json
           parameters: adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD}}
           deploymentMode: incremental
-
-
-
-
-
       # - name: Deploy resource group rg-githubactions with AZ CLI
       #   uses: Azure/cli@1.0.4
       #   with:
